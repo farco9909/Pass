@@ -1,0 +1,215 @@
+/* Genel Stil Ayarları */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Arka Plan */
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    overflow: hidden;
+
+    -webkit-user-select: text; /* Safari */
+    -moz-user-select: text; /* Firefox */
+    -ms-user-select: text; /* Internet Explorer/Edge */
+    user-select: text; /* Standart */
+}
+
+/* Başlık Seçimini Engelleme */
+h1, h2, h3, h4, h5, h6 {
+    user-select: none; /* Başlıkları seçilemez yapar */
+}
+
+/* Modal Penceresi */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+    padding-top: 60px;
+}
+
+/* Modal İçeriği */
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Kapanma Butonu */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal Başlık */
+h2 {
+    color: #1877f2;
+}
+
+/* Modal İçeriği */
+p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Ana Kapsayıcı (Container) */
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    text-align: center;
+    overflow: hidden;
+    height: auto;
+}
+
+/* Başlık */
+h1 {
+    font-size: 2em;
+    color: #1877f2;
+    margin-bottom: 20px;
+}
+
+/* Form Elemanları */
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f0f2f5;
+    color: #333;
+    font-size: 1em;
+    resize: none;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #1877f2;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Button (Düğme) */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standart */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Dosya Seçme Butonu */
+input[type="file"] {
+    display: none; /* Dosya input'ı görünmesin */
+}
+
+/* Dosya Seçme Etiketinin Konumlandırılması */
+.file-label {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #0056b3;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px; /* Sağda boşluk bırakmak */
+    text-align: center;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standart */
+}
+
+.file-label:hover {
+    background-color: #1877f2;
+}
+
+.file-name {
+    margin-top: 10px;
+    color: #333;
+    font-size: 1em;
+    text-align: left; /* Adın sola hizalanması */
+}
+
+/* Formun İçindeki Düzen */
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+input[type="file"] + .file-label {
+    margin-right: 20px; /* Dosya seçme etiketinden sonra bir boşluk bırak */
+}
+
+/* Resim */
+img {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+
+    -webkit-user-drag: none; /* Safari */
+    -moz-user-drag: none; /* Firefox */
+    user-drag: none; /* Standart */
+}
+
+/* Gönderiler Arası Boşluk */
+.post {
+    margin-bottom: 20px; /* Gönderiler arasına 20px boşluk ekler */
+}
+
+/* Eğer gönderi başlıkları varsa */
+.post h3 {
+    margin-bottom: 10px; /* Başlık ile içerik arasına boşluk */
+}

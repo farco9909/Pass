@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gönderiler</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Modal Yapısı -->
+  <div class="modal" id="postModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Gönderiler</h2>
+      <div id="postContainer">
+        <!-- Burada gönderiler dinamik olarak görünecek -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal açılma
+    const modal = document.getElementById('postModal');
+    const closeModalButton = document.getElementById('closeModal');
+
+    // WebSocket bağlantısını kur
+    const ws = new WebSocket('ws://localhost:5000');
+
+    // WebSocket mesajlarını al
+    ws.onmessage = function (event) {
+      const newPost = JSON.parse(event.data);
+      if (newPost.type === 'newPost') {
+        displayPost(newPost.post); // Yeni gönderiyi ekranda göster
+      }
+    };
+
+    // Yeni gönderiyi sayfada göstermek
+    function displayPost(post) {
+      const postContainer = document.getElementById('postContainer');
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post';
+      
+      // Eğer gönderinin bir resmi varsa, resmi de ekle
+      let imageHTML = '';
+      if (post.imageUrl) {
+        imageHTML = `<img src="${post.imageUrl}" alt="Post Image" class="post-image" />`;
+      }
+
+      // Post içeriğiyle birlikte resmi ekle
+      postDiv.innerHTML = `
+        <h3>${post.title}</h3>
+        <p>${post.content}</p>
+        ${imageHTML}
+      `;
+      postContainer.appendChild(postDiv); // Yeni gönderiyi en sona ekle
+    }
+
+    // Sayfa yüklendiğinde mevcut gönderileri getirme
+    async function fetchPosts() {
+      try {
+        const response = await fetch('http://localhost:5000/api/posts');
+        const posts = await response.json();
+        posts.forEach(post => {
+          displayPost(post);  // Her gönderiyi ekranda göster
+        });
+      } catch (error) {
+        console.error('Gönderiler alınırken bir hata oluştu:', error);
+      }
+    }
+
+    // Modal'ı aç
+    window.onload = function () {
+      modal.style.display = "block"; // Sayfa yüklendiğinde modal otomatik açılır
+      fetchPosts(); // Başlangıçta gönderileri çek
+    };
+
+    // Modal'ı kapat
+    closeModalButton.onclick = function() {
+      modal.style.display = "none";
+    };
+
+    // Modal dışında bir yere tıklanırsa da kapatılabilir
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>
